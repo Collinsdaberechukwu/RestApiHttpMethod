@@ -15,6 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class AppUserImpl implements AppUserService {
@@ -29,17 +32,6 @@ public class AppUserImpl implements AppUserService {
         return new ResponseEntity<>(AppUserMapper.mapSignUpResponse(appUser),HttpStatus.CREATED);
 
     }
-
-//    @Override
-//    public ResponseEntity<SignUpResponse> createAllUser(SignUpRequest request){
-//        if (appUserRepository.existsByEmailOrPhoneNumber(request.getEmail(),request.getPhoneNumber())){
-//            throw new RuntimeException("Details already been used");
-//        }
-//        AppUser appUser = appUserRepository.save(AppUserMapper.mapSignUpRequestToAppUser(request));
-//
-//        return new ResponseEntity<>(AppUserMapper.mapSignUpResponse(appUser),HttpStatus.CREATED);
-//    }
-
     @Override
    public ResponseEntity<AppUserResponse> getUserById(Long id){
         AppUser appUser = appUserRepository.findById(id)
@@ -61,6 +53,13 @@ public class AppUserImpl implements AppUserService {
         appUser = appUserRepository.save(AppUserMapper.mapUpdateRequestToAppUser(appUser,request));
         return new ResponseEntity<>(AppUserMapper.mapAppUserResponse(appUser),HttpStatus.OK);
 
+    }
+    @Override
+    public ResponseEntity<List<AppUserResponse>>  getAllUser(){
+       List<AppUserResponse> appUsers= appUserRepository.findAll()
+               .stream().map(AppUserMapper::mapAppUserResponse)
+               .collect(Collectors.toList());
+        return new ResponseEntity<>(appUsers, HttpStatus.OK);
     }
 
 }

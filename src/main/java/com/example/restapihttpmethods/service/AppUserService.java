@@ -7,6 +7,8 @@ import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.model.AppUser;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface AppUserService {
 //    AppUser createUser(SignUpRequest request);
 
@@ -20,4 +22,6 @@ public interface AppUserService {
     ResponseEntity<String> deleteUserById(Long id);
 
     ResponseEntity<AppUserResponse> updateUser(UpdateRequest request, Long id);
+
+    ResponseEntity<List<AppUserResponse>>  getAllUser();
 }
