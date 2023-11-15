@@ -1,6 +1,7 @@
 package com.example.restapihttpmethods.mapper;
 
 import com.example.restapihttpmethods.dto.Request.SignUpRequest;
+import com.example.restapihttpmethods.dto.Response.AppUserResponse;
 import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.model.AppUser;
 
@@ -12,15 +13,25 @@ public class AppUserMapper {
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .location(request.getLocation())
-                .password(request.getPassword())
+                .phoneNumber(request.getPhoneNumber())
                 .build();
     }
 
     public static SignUpResponse mapSignUpResponse(AppUser response){
         return  SignUpResponse.builder()
                 .email(response.getEmail())
-                .password(response.getPassword())
+                .phoneNumber(response.getPhoneNumber())
                 .message("Registered Successfully")
+                .build();
+    }
+    public static AppUserResponse mapAppUserResponse(AppUser getResponse){
+        return AppUserResponse.builder()
+                .firstName(getResponse.getFirstName())
+                .lastName(getResponse.getLastName())
+                .email(getResponse.getEmail())
+                .phoneNumber(getResponse.getPhoneNumber())
+                .location(getResponse.getLocation())
+                .id(getResponse.getId())
                 .build();
     }
 }

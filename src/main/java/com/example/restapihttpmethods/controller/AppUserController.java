@@ -1,7 +1,8 @@
 package com.example.restapihttpmethods.controller;
 
 import com.example.restapihttpmethods.dto.Request.SignUpRequest;
-import com.example.restapihttpmethods.model.AppUser;
+import com.example.restapihttpmethods.dto.Response.AppUserResponse;
+import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,12 @@ public class AppUserController {
 
     @PostMapping("/create-user")
     @ResponseStatus(HttpStatus.CREATED)
-    public AppUser createdUser(@RequestBody SignUpRequest request){
+    public ResponseEntity<SignUpResponse> createdUser(@RequestBody SignUpRequest request){
         return appUserService.createUser(request);
     }
 
+    @GetMapping("get-user/{id}")
+    public ResponseEntity<AppUserResponse> getUserById(@PathVariable Long id){
+        return appUserService.getUserById(id);
+    }
 }

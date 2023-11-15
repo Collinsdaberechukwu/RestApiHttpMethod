@@ -1,5 +1,6 @@
 package com.example.restapihttpmethods.dto.Response;
 
+
 import lombok.*;
 
 @Getter
@@ -7,9 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SignUpResponse {
-
+public class AppUserResponse {
+    private Long id;
+    private String firstName;
+    private String lastName;
     private String email;
+    private String location;
     private String phoneNumber;
-    private String message;
 }
