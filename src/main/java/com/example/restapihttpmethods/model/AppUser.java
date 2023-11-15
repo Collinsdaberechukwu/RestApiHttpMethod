@@ -1,5 +1,6 @@
 package com.example.restapihttpmethods.model;
 
+import com.example.restapihttpmethods.dto.Request.SignUpRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,9 +28,12 @@ public class AppUser {
     private String location;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private String phoneNumber;
 
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
+
 }

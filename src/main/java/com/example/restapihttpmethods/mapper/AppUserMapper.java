@@ -16,7 +16,7 @@ public class AppUserMapper {
                 .build();
     }
 
-    public static SignUpResponse mapSignUpResponse(SignUpResponse response){
+    public static SignUpResponse mapSignUpResponse(AppUser response){
         return  SignUpResponse.builder()
                 .email(response.getEmail())
                 .password(response.getPassword())
