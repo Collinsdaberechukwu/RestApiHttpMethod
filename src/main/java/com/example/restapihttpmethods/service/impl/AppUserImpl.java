@@ -1,6 +1,7 @@
 package com.example.restapihttpmethods.service.impl;
 
 import com.example.restapihttpmethods.dto.Request.SignUpRequest;
+import com.example.restapihttpmethods.dto.Request.UpdateRequest;
 import com.example.restapihttpmethods.dto.Response.AppUserResponse;
 import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.exception.UserAlreadyExistException;
@@ -44,6 +45,22 @@ public class AppUserImpl implements AppUserService {
         AppUser appUser = appUserRepository.findById(id)
                 .orElseThrow(()-> new UserNotFoundException("User not available"));
         return new ResponseEntity<>(AppUserMapper.mapAppUserResponse(appUser),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<String> deleteUserById(Long id){
+         appUserRepository.deleteById(id);
+         return new ResponseEntity<>("User deleted successfully",HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<AppUserResponse> updateUser(UpdateRequest request, Long id){
+        AppUser appUser = appUserRepository.findById(id)
+                .orElseThrow(()-> new UserNotFoundException("User not found"));
+
+        appUser = appUserRepository.save(AppUserMapper.mapUpdateRequestToAppUser(appUser,request));
+        return new ResponseEntity<>(AppUserMapper.mapAppUserResponse(appUser),HttpStatus.OK);
+
     }
 
 }

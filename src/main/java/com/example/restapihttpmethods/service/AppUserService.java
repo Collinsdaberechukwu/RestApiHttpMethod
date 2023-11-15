@@ -1,6 +1,7 @@
 package com.example.restapihttpmethods.service;
 
 import com.example.restapihttpmethods.dto.Request.SignUpRequest;
+import com.example.restapihttpmethods.dto.Request.UpdateRequest;
 import com.example.restapihttpmethods.dto.Response.AppUserResponse;
 import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.model.AppUser;
@@ -16,4 +17,7 @@ public interface AppUserService {
     ResponseEntity<AppUserResponse> getUserById(Long id);
 
 
+    ResponseEntity<String> deleteUserById(Long id);
+
+    ResponseEntity<AppUserResponse> updateUser(UpdateRequest request, Long id);
 }

@@ -1,6 +1,7 @@
 package com.example.restapihttpmethods.mapper;
 
 import com.example.restapihttpmethods.dto.Request.SignUpRequest;
+import com.example.restapihttpmethods.dto.Request.UpdateRequest;
 import com.example.restapihttpmethods.dto.Response.AppUserResponse;
 import com.example.restapihttpmethods.dto.Response.SignUpResponse;
 import com.example.restapihttpmethods.model.AppUser;
@@ -33,5 +34,13 @@ public class AppUserMapper {
                 .location(getResponse.getLocation())
                 .id(getResponse.getId())
                 .build();
+    }
+
+    public static AppUser mapUpdateRequestToAppUser(AppUser appUser, UpdateRequest request){
+        appUser.setFirstName(request.getFirstName());
+        appUser.setLastName(request.getLastName());
+        appUser.setLocation(request.getLocation());
+
+        return appUser;
     }
 }
